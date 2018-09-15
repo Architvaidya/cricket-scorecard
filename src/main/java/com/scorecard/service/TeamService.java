@@ -3,6 +3,7 @@ package com.scorecard.service;
 import com.scorecard.entity.Player;
 import com.scorecard.mockpersist.DataStore;
 import com.scorecard.entity.Team;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,11 +11,11 @@ import java.util.List;
 @Service
 public class TeamService {
 
-
+    @Autowired
     DataStore dataStore;
 
     public TeamService() {
-        dataStore = new DataStore();
+
     }
 
     public List<Team> getAllTeams(){
@@ -39,6 +40,10 @@ public class TeamService {
                 t.getPlayers().add(p.getId());
             }
         }
+    }
+
+    public void deleteAll(){
+        dataStore.getTeams().clear();
     }
 
 }

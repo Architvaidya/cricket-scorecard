@@ -6,6 +6,7 @@ import com.scorecard.service.OverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,8 @@ public class OverController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/over")
-    public ResponseEntity<Over> addOver(Over over){
+    public ResponseEntity<Over> addOver(@RequestBody  Over over){
+        System.out.println("Incoming over bowlerId is :"+over.getBowlerId());
         Over o = service.addOver(over);
         return new ResponseEntity<Over>(o, HttpStatus.OK);
     }

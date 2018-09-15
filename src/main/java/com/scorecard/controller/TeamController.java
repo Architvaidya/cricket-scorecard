@@ -39,7 +39,7 @@ public class TeamController {
 
 
     }
-
+    @CrossOrigin(origins="http://localhost:4200")
     @RequestMapping(method = RequestMethod.POST, value = "/team")
     @ResponseBody
     public ResponseEntity<Team> addTeam(@RequestBody Team team){
@@ -47,5 +47,14 @@ public class TeamController {
         Team t = service.addTeam(team);
 
         return new ResponseEntity<Team>(t, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/team")
+    @ResponseBody
+    public void deleteAll(){
+        service.deleteAll();
+
+
+
     }
 }

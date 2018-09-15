@@ -10,20 +10,25 @@ public class Over {
     private Integer id = 0;
     private List<Score> scores;
     private Integer deliveries;
-    @Autowired
-    private Player bowler;
+    private Integer bowlerId;
 
+    private static Integer COUNT = 0;
 
     public Over() {
-        id++;
+        COUNT++;
+        id = COUNT;
         deliveries = 0;
         scores = new ArrayList<Score>();
     }
 
-    public Over(List<Score> scores, Integer deliveries, Player bowler) {
-        this.scores = scores;
-        this.deliveries = deliveries;
-        this.bowler = bowler;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void IncrementDeliveries(){
@@ -46,13 +51,11 @@ public class Over {
         this.deliveries = deliveries;
     }
 
-    public Player getBowler() {
-        return bowler;
+    public Integer getBowlerId() {
+        return bowlerId;
     }
 
-    public void setBowler(Player bowler) {
-        this.bowler = bowler;
+    public void setBowlerId(Integer bowlerId) {
+        this.bowlerId = bowlerId;
     }
-
-
 }

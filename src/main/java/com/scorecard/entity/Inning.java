@@ -28,9 +28,12 @@ public class Inning {
     private static Integer COUNT = 1;
 
     public Inning() {
+
         this.id = COUNT;
         COUNT++;
         overs = new ArrayList<Over>();
+
+
         runs = 0;
         wickets = 0;
     }

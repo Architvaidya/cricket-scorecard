@@ -11,14 +11,15 @@ import java.util.List;
 @Service
 public class PlayerService {
 
-
+    @Autowired
     DataStore dataStore;
 
     @Autowired
     TeamService service;
 
     public PlayerService() {
-        dataStore = new DataStore();
+
+
     }
 
     public List<Player> getAllPlayers(){
@@ -29,6 +30,7 @@ public class PlayerService {
 
     public Player getPlayerById(Integer id){
         System.out.println("Searching for Player with id :"+id);
+        System.out.println("Size of players is : "+dataStore.getPlayers().size());
         return dataStore.getPlayers().stream().filter(t -> t.getId() == id).findFirst().get();
 
     }
@@ -37,15 +39,15 @@ public class PlayerService {
         System.out.println("Updating Player with id : "+p.getId());
         Player playerToBeUpdated = getPlayerById(p.getId());
         Player player;
-        playerToBeUpdated.setStatistics(p.getStatistics());
+        //playerToBeUpdated.setStatistics(p.getStatistics());
         for(int i = 0; i< dataStore.getPlayers().size();i++){
             player = dataStore.getPlayers().get(i);
-            if(player.getId() == p.getId()){
+            if(player.getId() == playerToBeUpdated.getId()){
                 dataStore.getPlayers().remove(i);
             }
 
         }
-        dataStore.getPlayers().add(playerToBeUpdated);
+        dataStore.getPlayers().add(p);
 
     }
 
@@ -69,5 +71,9 @@ public class PlayerService {
         return dataStore.getPlayers();
 
 
+    }
+
+    public void deleteAll(){
+        dataStore.getInnings().clear();
     }
 }
